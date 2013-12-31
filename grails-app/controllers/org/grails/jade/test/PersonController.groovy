@@ -2,6 +2,14 @@ package org.grails.jade.test
 
 class PersonController {
 
+    def home(){
+        render view: '/index'
+    }
+
+    def persons() {
+        render view: 'persons', model: [foo: 'Some Important Data']
+    }
+
     def echo() {
         render 'here'
     }

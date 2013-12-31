@@ -6,8 +6,9 @@ class UrlMappings {
 				// apply constraints here
 			}
 		}
+        "/error"(view:'/error')
 
-		"/"(view:"/index")
+		"/"(controller: 'person', action:'home')
 		"500"(view:'/error')
 	}
 }

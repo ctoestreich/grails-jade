@@ -20,7 +20,7 @@ grails.project.dependency.resolution = {
     dependencies {
         compile "de.neuland:jade4j:0.3.9"
         compile "de.neuland:spring-jade4j:0.3.2"
-        test("org.spockframework:spock-grails-support:0.7-groovy-2.0"){
+        test("org.spockframework:spock-grails-support:0.7-groovy-2.0") {
             export = false
         }
 
@@ -44,16 +44,29 @@ grails.project.dependency.resolution = {
         }
 
         test('jade4j-coffeescript-filter:jade4j-coffeescript-filter:0.2.0',
-             'org.markdownj:markdownj:0.3.0-1.0.2b4',
-             'jcoffeescript:jcoffeescript:1.1'){
+                'org.markdownj:markdownj:0.3.0-1.0.2b4',
+                'jcoffeescript:jcoffeescript:1.1') {
             export = false
         }
     }
 
     plugins {
-        runtime(":hibernate:$grailsVersion") {
+
+        // plugins for the build system only
+        build(":tomcat:7.0.47") {
             export = false
         }
+
+        // plugins for the compile step
+        compile(":scaffolding:2.0.1", ':cache:1.1.1') {
+            export = false
+        }
+
+        // plugins needed at runtime but not for compilation
+        runtime(":hibernate:3.6.10.6") {
+            export = false
+        }
+
 
         compile ':plugin-config:0.1.8'
 
@@ -62,8 +75,7 @@ grails.project.dependency.resolution = {
         //     export = false
         // }
 
-        build(":tomcat:$grailsVersion",
-              ":rest-client-builder:1.0.2") {
+        build(":rest-client-builder:1.0.2") {
             export = false
         }
 
